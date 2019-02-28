@@ -1,0 +1,60 @@
+package com.thekleaners.fragments
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.thekleaners.R
+import com.thekleaners.activity.NavigationDrawer
+import com.thekleaners.adapters.ViewPagerMedical
+import com.thekleaners.baseClasses.BaseNavigationFragment
+import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
+import kotlinx.android.synthetic.main.fragment_medical.*
+import java.util.*
+
+class MedicalWaste : BaseNavigationFragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_medical, container, false)
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mainActivity = activity as NavigationDrawer
+        mainActivity.toolbar.visibility = View.GONE
+        mainActivity.tabLayout.visibility = View.GONE
+        (activity as NavigationDrawer).setDrawerLocked(true)
+        mMedicalBackArrow.setOnClickListener { mRecycleByMailServiceBackArrowFunction() }
+        val viewPagerAdapter = ViewPagerMedical(mainActivity)
+        medicalWasteViewPager.adapter = viewPagerAdapter
+
+        val timer = Timer()
+        timer.scheduleAtFixedRate(MyTimerTask(), 2000, 4000)
+    }
+
+    inner class MyTimerTask : TimerTask() {
+
+        override fun run() {
+
+            mainActivity.runOnUiThread(java.lang.Runnable {
+
+                if (medicalWasteViewPager == null) {
+                    return@Runnable
+                }
+
+                when {
+                    medicalWasteViewPager.currentItem == 0 -> medicalWasteViewPager.currentItem = 1
+                    medicalWasteViewPager.currentItem == 1 -> medicalWasteViewPager.currentItem = 2
+                    else -> medicalWasteViewPager.currentItem = 0
+                }
+            })
+        }
+
+    }
+
+    private fun mRecycleByMailServiceBackArrowFunction() {
+        fragmentManager!!.beginTransaction().replace(R.id.containerView, ForHomeService()).addToBackStack(null).commit()
+    }
+}

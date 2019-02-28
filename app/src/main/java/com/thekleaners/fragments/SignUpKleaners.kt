@@ -1,0 +1,91 @@
+package com.thekleaners.fragments
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.thekleaners.R
+import com.thekleaners.activity.NavigationDrawer
+import com.thekleaners.baseClasses.BaseNavigationFragment
+import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
+import kotlinx.android.synthetic.main.fragment_signup_kleaners.*
+
+class SignUpKleaners : BaseNavigationFragment() {
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_signup_kleaners, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mainActivity = activity as NavigationDrawer
+        mainActivity.toolbar.visibility = View.GONE
+        //mainActivity.title_name.text = resources.getString(R.string.signIn)
+        mainActivity.tabLayout.visibility = View.GONE
+        (activity as NavigationDrawer).setDrawerLocked(true)
+
+
+        mMobileVerBackButton.setOnClickListener { mMobileVerBackButtonFunction() }
+
+        buttonContinue!!.setOnClickListener {
+            val number = editTextPhone!!.text.toString().trim()
+            if (number.isEmpty() || number.length < 10) {
+                editTextPhone!!.error = "Valid Number is required"
+                editTextPhone!!.requestFocus()
+                return@setOnClickListener
+            }
+
+/*
+            val intent = Intent(this@AuthActivity, VerifiyPhoneActivity::class.java)
+            intent.putExtra("phonenumber", number)
+            startActivity(intent)*/
+
+            sendToVerification()
+        }
+
+    }
+
+    /* override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+         when (requestCode) {
+             MY_PERMISSON_REQUEST_RECIVE_SMS -> {
+                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                     Toast.makeText(mainActivity, "Thank you for permitting", Toast.LENGTH_SHORT).show()
+                 } else {
+                     Toast.makeText(mainActivity, "Well i can't do anything until you permit me", Toast.LENGTH_SHORT)
+                         .show()
+                 }
+
+             }
+         }
+     }
+ */
+    private fun sendToVerification() {
+        val args = Bundle()
+        args.putString("phonenumber", editTextPhone.text.toString())
+        val newFragment = NumberVerification()
+        newFragment.arguments = args
+        //  mRelativeLayoutForGoneSignUp.visibility = View.GONE
+        fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, newFragment).commit()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            mRelativeLayoutForGoneSignUp.visibility = View.GONE
+            fragmentManager!!.beginTransaction().replace(R.id.containerView, Profile()).commit()
+        }
+    }
+
+    private fun mMobileVerBackButtonFunction() {
+        val intent = Intent(context, NavigationDrawer::class.java)
+        startActivity(intent)
+    }
+
+
+}

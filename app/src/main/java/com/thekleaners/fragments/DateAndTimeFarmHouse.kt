@@ -1,0 +1,105 @@
+package com.thekleaners.fragments
+
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Rect
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import com.thekleaners.R
+import com.thekleaners.baseClasses.BaseNavigationFragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.thekleaners.activity.NavigationDrawer
+import com.thekleaners.pojoClass.ForService
+import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
+import kotlinx.android.synthetic.main.dialog_thanku.*
+import kotlinx.android.synthetic.main.fragment_date_and_time_farmhouse.*
+
+
+class DateAndTimeFarmHouse : BaseNavigationFragment() {
+
+    private val displayRectangle = Rect()
+    private var width = 0
+    private lateinit var dialog: Dialog
+    private lateinit var metrics: DisplayMetrics
+
+
+    private var user_id: String? = null
+    private val db = FirebaseFirestore.getInstance()
+    private val notebookRef = db.collection("Users")
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_date_and_time_farmhouse, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mainActivity = activity as NavigationDrawer
+        mainActivity.toolbar.visibility = View.VISIBLE
+        mainActivity.tabLayout.visibility = View.GONE
+        (activity as NavigationDrawer).setDrawerLocked(true)
+        metrics = DisplayMetrics()
+        mainActivity.window.decorView.getWindowVisibleDisplayFrame(displayRectangle)
+        width = (displayRectangle.width() * 0.9f).toInt()
+        dialog = Dialog(mainActivity)
+        mSavedNewServiceFarmhouse.setOnClickListener { addNote() }
+        // mSavedNewService.setOnClickListener { mSavedNewServiceFunction() }
+        mDateBackArrowFarmhouse.setOnClickListener { mDateBackArrowFunction() }
+
+        user_id = FirebaseAuth.getInstance().uid
+
+    }
+
+    private fun addNote() {
+
+        mDailyServiceTimingFarmhouse.text = getCurrentDate()
+
+        val serviceTaken = mDailyServiceTakenFarmhouse!!.text.toString()
+        val amount = mDailyServiceAmountFarmhouse!!.text.toString()
+        val timing = mDailyServiceTimingFarmhouse!!.text.toString()
+
+        val note = ForService(serviceTaken, amount, timing)
+
+        notebookRef.document(user_id!!).collection("Services").document("For Daily Picking").collection("Daily Service").add(note)
+
+        thankuDialog()
+    }
+
+
+    @SuppressLint("InflateParams")
+    private fun thankuDialog() {
+        val layout = LayoutInflater.from(mainActivity).inflate(R.layout.dialog_thanku, null)
+        layout.minimumWidth = width
+        val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        lp.setMargins(0, 20, 0, 0)
+        dialog.setContentView(layout)
+        dialog.mContinueDialog.setOnClickListener { mDialogContinueFunction() }
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+
+    }
+
+    private fun mDialogContinueFunction() {
+        fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, SavedServices()).commit()
+        dialog.dismiss()
+    }
+
+    private fun mDateBackArrowFunction() {
+        fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, PricingGuideFarmHouse()).commit()
+        dialog.dismiss()
+    }
+
+    private fun getCurrentDate(): String {
+        val builder = StringBuilder()
+        builder.append((date_pickerFarmhouse.dayOfMonth).toString() + "-")
+        builder.append((date_pickerFarmhouse.month + 1).toString() + "-")
+        builder.append(date_pickerFarmhouse.year)
+        return builder.toString()
+    }
+}

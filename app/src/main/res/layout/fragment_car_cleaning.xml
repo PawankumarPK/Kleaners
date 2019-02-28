@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mNestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
+    android:background="#fff"
+    tools:targetApi="jelly_bean">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mRelativeLayoutToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/mCarServiceBackArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/car_left_arrow" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/mCarServiceBackArrow"
+                    android:layout_toRightOf="@+id/mCarServiceBackArrow"
+                    android:text="@string/car_washing"
+                    android:textColor="#1b1a1a"
+                    android:textSize="18sp" />
+
+
+                <ImageView
+                    android:id="@+id/mForCarCleaningContinue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginRight="18dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_checked"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/mForCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mRelativeLayoutToolbar"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="casual"
+            android:text="@string/car_wash_service_at_your_doorstep"
+            android:textColor="#2d2c2c"
+            android:textSize="20sp" />
+
+
+        <ImageView
+            android:id="@+id/mHomeServiceIcon"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_below="@+id/mForCar"
+            android:contentDescription="@null"
+            android:src="@drawable/carcleaning" />
+
+        <RelativeLayout
+            android:id="@+id/mRelativeLayoutOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mHomeServiceIcon">
+
+            <LinearLayout
+                android:id="@+id/mLinearLayoutOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/daily_car_shine"
+                    android:textColor="#2d2c2c"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="#363232" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mLinearLayoutOne"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/water_wash"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/dry_cleaning"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/sprinkler_technology_car_wash"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/wheels_and_rims"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/windows_cleaning"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/mLinearLayoutTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mRelativeLayoutOne"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/weekly_interior_wash"
+                android:textColor="#2d2c2c"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="#363232" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mLinearLayoutThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mLinearLayoutTwo"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/interior_seat_dusting"
+                android:textColor="#2d2c2c"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/interior_mat_cleaning"
+                android:textColor="#2d2c2c"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/dashboard_dusting"
+                android:textColor="#2d2c2c"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/interior_sanitising"
+                android:textColor="#2d2c2c"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/intensive_internal_cleaning"
+                android:textColor="#2d2c2c"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/mRelativeLayoutTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mLinearLayoutThree">
+
+
+            <LinearLayout
+                android:id="@+id/mLinearLayoutFour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/complete_dry_cleaning"
+                    android:textColor="#2d2c2c"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="#363232" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mLinearLayoutFive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mLinearLayoutFour"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/seats_roof_mats_and_boot"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/door_and_windows_cleaning"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/total_hygiene_and_spotless_shine"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mRelativeLayoutThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mRelativeLayoutTwo">
+
+
+            <LinearLayout
+                android:id="@+id/mLinearLayoutSix"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/security_guaranteed"
+                    android:textColor="#2d2c2c"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="#363232" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mLinearLayoutSeven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mLinearLayoutSix"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/background_checked"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/no_absenteeism"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/_80_less_water_usage"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mRelativeLayoutFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mRelativeLayoutThree">
+
+
+            <LinearLayout
+                android:id="@+id/mLinearLayoutEight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/india_s_leading_home_car_wash_service"
+                    android:textColor="#2d2c2c"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="#363232" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mLinearLayoutNine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mLinearLayoutEight"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/door_step_car_washing"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/on_time_service"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/value_for_money"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/neat_clean_and_hygienic_service"
+                    android:textColor="#2d2c2c"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
+
+

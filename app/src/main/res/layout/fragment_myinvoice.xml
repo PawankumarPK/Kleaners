@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mRelativeLayoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_vertical"
+    android:background="#fff">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mRelativeLayoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:id="@+id/mInvoiceBackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:contentDescription="@null"
+                android:src="@drawable/car_left_arrow"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoice"
+                android:textColor="#1b1a1a"
+                android:textSize="18sp"
+                android:layout_weight="9"/>
+
+            <ImageView
+                android:id="@+id/mInvoiceProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:contentDescription="@null"
+                android:src="@drawable/user_profile_invoice" />
+
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ProgressBar
+        android:id="@+id/invoice_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mRelativeLayoutToolbar"
+        android:indeterminate="true"
+        android:visibility="visible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/invoice_progress"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "573176257423",
+    "firebase_url": "https://thekleanersapp.firebaseio.com",
+    "project_id": "thekleanersapp",
+    "storage_bucket": "thekleanersapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573176257423:android:6de5b0a896da0116",
+        "android_client_info": {
+          "package_name": "com.thekleaners"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573176257423-8r4l2f7dngh5h63vt9q57n7iemsikd0f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thekleaners",
+            "certificate_hash": "fcc252dc15f8bfc78317a0ceb38ffbd71c1d156a"
+          }
+        },
+        {
+          "client_id": "573176257423-2m0nsabgouen5re73tfc939034mr3bnb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5i938ESQWKeCKgm2XF1b1zZg-W6oOsLY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573176257423-2m0nsabgouen5re73tfc939034mr3bnb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

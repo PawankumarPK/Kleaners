@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:targetApi="jelly_bean" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mToolbarMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/mCurbsidePickupBackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@null"
+                android:src="@drawable/left_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/curbside_pickup"
+                android:textColor="#1b1a1a"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/curbsidePickupViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/mToolbarMail"
+            android:layout_centerInParent="true"
+            android:background="#fff" />
+
+
+        <TextView
+            android:id="@+id/mTextPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/curbsidePickupViewPager"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/curbsPoints"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/mTextDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mTextPoints"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/curbsideDesc"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/mWhatisCurbside"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mTextDesc"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/whatisCurbside"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/mWhatisDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mWhatisCurbside"
+            android:layout_margin="13dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/whatisDesc"
+            android:textSize="14sp" />
+
+
+
+        <TextView
+            android:id="@+id/mWhatCanRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mWhatisDesc"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/whatcanrecycle"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/mWhatRecycleDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mWhatCanRecycle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/whatcanpoints"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/mPrductsDes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mWhatRecycleDesc"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/acceptableItemFood"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mPrductsDes"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/itemsFood"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

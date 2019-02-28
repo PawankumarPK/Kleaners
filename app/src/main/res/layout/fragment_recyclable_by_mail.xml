@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:targetApi="jelly_bean">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mToolbarMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/mRecycleByMailServiceBackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@null"
+                android:src="@drawable/left_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Recycle By Mail"
+                android:textColor="#1b1a1a"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/recycleByMailServiceViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/mToolbarMail"
+            android:layout_centerInParent="true"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/mRecycMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recycleByMailDesc"
+            android:layout_below="@+id/recycleByMailServiceViewPager"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_margin="15dp" />
+
+        <TextView
+            android:id="@+id/mRecycleByMainPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recyleByMailPoints"
+            android:layout_below="@+id/mRecycMail"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_margin="11dp"/>
+
+        <TextView
+            android:id="@+id/mWhatCanRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mRecycleByMainPoints"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/recycleDesc"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/mRecycMailDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recycleMailDesc"
+            android:layout_below="@+id/mWhatCanRecycle"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_margin="15dp"/>
+
+
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

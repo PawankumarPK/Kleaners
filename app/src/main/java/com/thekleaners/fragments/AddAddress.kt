@@ -1,0 +1,175 @@
+package com.thekleaners.fragments
+
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Rect
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.RadioGroup
+import com.thekleaners.R
+import com.thekleaners.baseClasses.BaseNavigationFragment
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.UploadTask
+import com.thekleaners.activity.NavigationDrawer
+import com.thekleaners.pojoClass.ForAddress
+import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
+import kotlinx.android.synthetic.main.dialog_note.*
+import kotlinx.android.synthetic.main.fragment_add_address.*
+import java.util.*
+
+
+class AddAddress : BaseNavigationFragment() {
+
+
+    private var user_id: String? = null
+    private val db = FirebaseFirestore.getInstance()
+    private val notebookRef = db.collection("Users")
+    var name: Boolean = true
+    // private lateinit var radioButton: RadioButton
+    private var firebaseFirestore: FirebaseFirestore? = null
+
+    private val displayRectangle = Rect()
+    private var width = 0
+    private lateinit var dialog: Dialog
+    private lateinit var metrics: DisplayMetrics
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_add_address, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mainActivity = activity as NavigationDrawer
+        mainActivity.toolbar.visibility = View.GONE
+        mainActivity.tabLayout.visibility = View.GONE
+        (activity as NavigationDrawer).setDrawerLocked(true)
+
+        metrics = DisplayMetrics()
+        mainActivity.window.decorView.getWindowVisibleDisplayFrame(displayRectangle)
+        width = (displayRectangle.width() * 0.9f).toInt()
+        dialog = Dialog(mainActivity)
+
+        alertDialog()
+
+        firebaseFirestore = FirebaseFirestore.getInstance()
+
+        setDefaultSetting()
+        radioGroup.setOnCheckedChangeListener(radioListener)
+
+        mContinueAddAdress.setOnClickListener { addAddress() }
+        mAddAddressBackArrow.setOnClickListener { mAddAddressBackArrowFunction() }
+
+        user_id = FirebaseAuth.getInstance().uid
+
+
+    }
+
+    private fun addAddress() {
+
+        addAddress_progress.visibility = View.VISIBLE
+
+        val address = mAddress.text.toString()
+        val landmark = mLandmark.text.toString()
+        val pincode = PinCode.text.toString()
+        val state = mSelectState.text.toString()
+        val city = mSelectCity.text.toString()
+        val radioButton = textview!!.text.toString()
+        storeFirestore(null, address, landmark, pincode, state, city, radioButton)
+    }
+
+
+    private fun storeFirestore(task: Task<UploadTask.TaskSnapshot>?, address: String, landmark: String, pincode: String, state: String, city: String, type: String) {
+
+        ///note.documentId = documentSnapshot.id
+
+        val userMap = HashMap<String, String>()
+        userMap["address"] = address
+        userMap["landmark"] = landmark
+        userMap["pincode"] = pincode
+        userMap["state"] = state
+        userMap["city"] = city
+        userMap["type"] = type
+
+
+        firebaseFirestore!!.collection("Users").document(user_id!!).collection("Address").document("$id").set(userMap as Map<String, Any>).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                //Toast.makeText(context, "Add Address", Toast.LENGTH_SHORT).show()
+
+                fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, SavedAddress()).commit()
+
+
+            }
+        }
+        pref.homeAndFlat = name
+    }
+
+
+    private fun addNote() {
+        val address = mAddress!!.text.toString()
+        val landmark = mLandmark!!.text.toString()
+        val pincode = PinCode!!.text.toString()
+        val selectState = mSelectState!!.text.toString()
+        val selectCity = mSelectCity!!.text.toString()
+        val radioButton = textview!!.text.toString()
+        addAddress_progress.visibility = View.VISIBLE
+
+
+        val note = ForAddress(address, landmark, pincode, selectState, selectCity, radioButton)
+
+        notebookRef.document(user_id!!).collection("Address").add(note)
+        pref.homeAndFlat = name
+        fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, SavedAddress()).commit()
+    }
+
+    private val radioListener = RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        when (group) {
+            radioGroup -> changeName(checkedId)
+        }
+        when (checkedId) {
+            R.id.mHomeAndFlatAddAddress -> textview.text = "Home Or Flats"
+            R.id.mFarmHouseAddAddress -> textview.text = "Farm House"
+        }
+    }
+
+
+    private fun setDefaultSetting() {
+        name = pref.homeAndFlat
+
+        if (name)
+            mHomeAndFlatAddAddress.isChecked = true
+        else
+            mFarmHouseAddAddress.isChecked = false
+
+
+    }
+
+    private fun changeName(checkedId: Int) {
+        name = checkedId == R.id.mHomeAndFlatAddAddress
+    }
+
+    private fun mAddAddressBackArrowFunction() {
+        fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, SavedAddress()).commit()
+    }
+
+    @SuppressLint("InflateParams")
+    private fun alertDialog() {
+        val layout = LayoutInflater.from(mainActivity).inflate(R.layout.dialog_note, null)
+        layout.minimumWidth = width
+        val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        lp.setMargins(0, 20, 0, 0)
+        dialog.setContentView(layout)
+        dialog.mContinueDialog.setOnClickListener { dialog.dismiss() }
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+
+    }
+
+}
