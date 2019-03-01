@@ -102,7 +102,7 @@ class Profile : BaseNavigationFragment() {
             } else {
 
                 val error = task.exception!!.message
-                Toast.makeText(context, "(FIRESTORE Retrieve Error) : $error", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
 
             }
             profile_progress.visibility = View.INVISIBLE

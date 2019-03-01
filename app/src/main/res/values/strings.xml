@@ -168,8 +168,8 @@
 
     <string name="verificationDesc">It will detected automatically ,but if it is not detected you can put it below manually as well </string>
 
-    <string name="helpDesc">Your TheKleaners Customer ID is a unique number on your invoice that is used to reference your account.
-        With your Customer ID, your account will receive faster service from TheKleaners by:</string>
+    <string name="helpDesc">Your TheKleaners Customer has a unique contact number that is used to reference your account.
+         Your account will receive faster service from TheKleaners by:</string>
 
     <string name="warningNote">If you change your residential type after adding address.
         \nSo, please let us know by call or email will respond as soon as possible. You cannot change manually</string>
@@ -273,7 +273,7 @@
     <string name="there_s_more_to_our">There\'s more to our</string>
     <string name="convenient_online_tools">Convenient Online Tools</string>
     <string name="industry_leading_service_guarantee">Industry Leading Service Guarantee</string>
-    <string name="invoice">Invoice</string>
+    <string name="invoice">Car Service</string>
     <string name="any_queries">Any Queries</string>
     <string name="write_here">Write here…</string>
     <string name="wait_for_the_code_we_send_you">Wait for the code we send you..</string>

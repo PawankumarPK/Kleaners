@@ -22,11 +22,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.thekleaners.BuildConfig
 import com.thekleaners.R
 import com.thekleaners.fragments.*
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
 import kotlinx.android.synthetic.main.dialog_privacy.*
+import kotlinx.android.synthetic.main.dialog_version.*
+import kotlinx.android.synthetic.main.dialog_version.view.*
 import kotlinx.android.synthetic.main.nav_header_navigation_drawer.*
 
 
@@ -237,6 +240,7 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
         layout.minimumWidth = width
         val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         lp.setMargins(0, 20, 0, 0)
+        layout.mVersion.text = "v.${BuildConfig.VERSION_NAME}"
         dialog.setContentView(layout)
         dialog.setCanceledOnTouchOutside(true)
         dialog.show()

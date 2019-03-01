@@ -18,6 +18,7 @@ import com.thekleaners.baseClasses.BaseNavigationFragment
 import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
 import kotlinx.android.synthetic.main.fragment_user_edit_profile.*
 import java.util.*
+import java.util.regex.Pattern
 
 class UserEditProfile : BaseNavigationFragment() {
 
@@ -25,6 +26,8 @@ class UserEditProfile : BaseNavigationFragment() {
     private var storageReference: StorageReference? = null
     private var firebaseAuth: FirebaseAuth? = null
     private var firebaseFirestore: FirebaseFirestore? = null
+
+     private val EMAIL_REGEX = "^[\\w-+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_user_edit_profile, container, false)
@@ -77,7 +80,7 @@ class UserEditProfile : BaseNavigationFragment() {
             } else {
 
                 val error = task.exception!!.message
-                Toast.makeText(context, "(FIRESTORE Retrieve Error) : $error", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
 
             }
             setup_progress.visibility = View.INVISIBLE
@@ -89,15 +92,47 @@ class UserEditProfile : BaseNavigationFragment() {
             val user_name = setup_name.text.toString()
             val surname_name = setup_surname.text.toString()
             val number_name = setup_number.text.toString()
-            if (!TextUtils.isEmpty(user_name) || !TextUtils.isEmpty(surname_name) || !TextUtils.isEmpty(number_name)) {
 
-                setup_progress.visibility = View.VISIBLE
+            if (!checkValidField())
+            return@setOnClickListener
 
-                storeFirestore(null, user_name, surname_name, number_name)
+            when {
+                setup_name.text.toString().isEmpty() -> {
+                    setup_name.error = "Empty"
+                    return@setOnClickListener
+                }
+                setup_surname.text.toString().isEmpty() -> {
+                    setup_surname.error = "Empty"
+                    return@setOnClickListener
+
+                }
+                setup_number.text.toString().isEmpty() -> {
+                    setup_number.error = "Empty"
+                    return@setOnClickListener
+                }
+                else -> {
+
+                    setup_progress.visibility = View.VISIBLE
+
+                    storeFirestore(null, user_name, surname_name, number_name)
+                }
+
             }
         }
 
 
+    }
+
+    private fun checkValidField(): Boolean {
+        val isValid: Boolean
+        val p = Pattern.compile(EMAIL_REGEX)
+        val m = p.matcher(setup_surname.text.toString())
+        isValid = m.find()
+        if (!isValid) {
+            Toast.makeText(context, "Invalid Email", Toast.LENGTH_LONG).show()
+            return isValid
+        }
+        return isValid
     }
 
 

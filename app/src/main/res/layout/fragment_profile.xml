@@ -250,6 +250,7 @@
                 android:id="@+id/mView5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:visibility="gone"
                 android:layout_below="@+id/mRelativeLayoutMyService"
                 android:background="#ccc" />
 
@@ -257,6 +258,7 @@
                 android:id="@+id/mRelativeLayoutMyInvoice"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:layout_below="@+id/mView5"
                 android:layout_marginTop="10dp">
 

@@ -43,37 +43,38 @@ class CarCategories : BaseNavigationFragment() {
         when (checkedId) {
             R.id.mHatchback -> {
                 carType.text = "HATCHBACK"
-                carAmountData.text = "2499"
+                carAmountData.text = "1999"
                 carSingleAmount.text = "6.67"
                 // mHatchback.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_button))
                 demoFun()
             }
             R.id.mSedan -> {
                 carType.text = "SEDAN"
-                carAmountData.text = "2699"
+                carAmountData.text = "2199"
                 carSingleAmount.text = "10"
                 // mSedan.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_button))
                 demoFun()
             }
-            R.id.mLuv -> {
-                carType.text = "LUV"
-                carAmountData.text = "9999"
-                carSingleAmount.text = "13.33"
-                // mLuv.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_button))
-                demoFun()
-            }
             R.id.mSuvMuv -> {
                 carType.text = "SUV/MUV"
-                carAmountData.text = "4999"
+                carAmountData.text = "2499"
                 carSingleAmount.text = "16.67"
                 // mSuvMuv.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_button))
                 demoFun()
             }
             R.id.mPrimieryLuxury -> {
                 carType.text = "LUXURY"
-                carAmountData.text = "6999"
+                carAmountData.text = "3499"
                 carSingleAmount.text = "23.33"
                 // mPrimieryLuxury.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_button))
+                demoFun()
+            }
+
+            R.id.mLuv -> {
+                carType.text = "LUV"
+                carAmountData.text = "4199"
+                carSingleAmount.text = "13.33"
+                // mLuv.startAnimation(AnimationUtils.loadAnimation(context, R.anim.image_button))
                 demoFun()
             }
         }

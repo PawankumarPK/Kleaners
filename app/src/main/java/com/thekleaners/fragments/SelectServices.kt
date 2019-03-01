@@ -8,15 +8,11 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
-import com.thekleaners.R
-import com.thekleaners.baseClasses.BaseNavigationFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.thekleaners.R
 import com.thekleaners.activity.NavigationDrawer
-import com.thekleaners.fragments.CarCategories
-import com.thekleaners.fragments.PricingGuide
-import com.thekleaners.fragments.PricingGuideFarmHouse
-import com.thekleaners.fragments.SavedServices
+import com.thekleaners.baseClasses.BaseNavigationFragment
 import com.thekleaners.pojoClass.ForService
 import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
 import kotlinx.android.synthetic.main.fragment_select_service.*
@@ -47,38 +43,50 @@ class SelectServices : BaseNavigationFragment() {
         mRelativeLayout.setOnClickListener { Toast.makeText(context, "Upcoming Service", Toast.LENGTH_SHORT).show() }
 
         selectService_progress.visibility = VISIBLE
+        mForDailyService.isEnabled = false
+        mForCarCleaning.isEnabled = false
         user_id = FirebaseAuth.getInstance().uid
         loadAddressData()
     }
 
     @SuppressLint("SetTextI18n")
     private fun loadAddressData() {
-        notebookRef.document(user_id!!).collection("Services").document("For Daily Picking").collection("Daily Service").get().addOnSuccessListener { queryDocumentSnapshots ->
+        notebookRef.document(user_id!!).collection("Services").document("For Daily Picking").collection("Daily Service")
+            .get().addOnSuccessListener { queryDocumentSnapshots ->
 
-            for (documentSnapshot in queryDocumentSnapshots) {
-                val note = documentSnapshot.toObject(ForService::class.java)
-                note.documentId = documentSnapshot.id
+                for (documentSnapshot in queryDocumentSnapshots) {
+                    val note = documentSnapshot.toObject(ForService::class.java)
+                    note.documentId = documentSnapshot.id
 
-                val documentServiceTaken = note.serviceTaken
 
-                if (mDemoText == null)
-                    return@addOnSuccessListener
-                else
-                    mDemoText.text = documentServiceTaken
+                    val documentServiceTaken = note.serviceTaken
 
+                    if (mDemoText.text == null) {
+                        return@addOnSuccessListener
+                    } else {
+                        mDemoText.text = documentServiceTaken
+
+                    }
+
+                }
+
+                selectService_progress.visibility = INVISIBLE
+                mForDailyService.isEnabled = true
+                mForCarCleaning.isEnabled = true
             }
-
-            selectService_progress.visibility = INVISIBLE
-        }
     }
 
     private fun homePricingFunction() {
 
         if (pref.homeAndFlat) {
-            fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, PricingGuide()).commit()
+            fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, PricingGuide())
+                .commit()
         } else
 
-            fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, PricingGuideFarmHouse()).commit()
+            fragmentManager!!.beginTransaction().addToBackStack(null).replace(
+                R.id.containerView,
+                PricingGuideFarmHouse()
+            ).commit()
 
 
     }
