@@ -20,6 +20,8 @@ import com.thekleaners.activity.NavigationDrawer
 import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
 import kotlinx.android.synthetic.main.dialog_logout.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import com.thekleaners.BuildConfig
+
 
 class Profile : BaseNavigationFragment() {
 
@@ -68,6 +70,22 @@ class Profile : BaseNavigationFragment() {
         mProfileBackArrow.setOnClickListener { mProfileBackArrowFunction() }
         mRelativeLayoutQuery.setOnClickListener { mRelativeLayoutQueryFunction() }
         mRelativeLayoutMyInvoice.setOnClickListener { mRelativeLayoutMyInvoiceFunction() }
+        mInvite.setOnClickListener {
+            try {
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.type = "text/plain"
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "TheKleaners")
+                var shareMessage = "\nTheKleaners,where hygiene matters\n"
+                shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" +
+                        BuildConfig.APPLICATION_ID + "\n"
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+                startActivity(Intent.createChooser(shareIntent, "choose one"))
+            } catch (e: Exception) {
+                //e.toString();
+            }
+
+        }
+
 
 
         profile_progress.visibility = View.VISIBLE

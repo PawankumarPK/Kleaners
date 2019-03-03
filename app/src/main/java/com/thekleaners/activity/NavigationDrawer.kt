@@ -1,6 +1,7 @@
 package com.thekleaners.activity
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Rect
 import android.os.Bundle
@@ -16,19 +17,18 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
-import com.thekleaners.adapters.FragmentAdapter
-import com.thekleaners.baseClasses.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.thekleaners.BuildConfig
 import com.thekleaners.R
+import com.thekleaners.adapters.FragmentAdapter
+import com.thekleaners.baseClasses.BaseActivity
 import com.thekleaners.fragments.*
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
 import kotlinx.android.synthetic.main.dialog_privacy.*
-import kotlinx.android.synthetic.main.dialog_version.*
 import kotlinx.android.synthetic.main.dialog_version.view.*
 import kotlinx.android.synthetic.main.nav_header_navigation_drawer.*
 
@@ -80,7 +80,8 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
         getUserNameData()
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -109,27 +110,19 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
             setDrawerLocked(false)
             super.onBackPressed()
         }
-        /*else
-        super.onBackPressed()*/
-
-
-        /*  override fun onBackPressed() {
-              val fragment =
-                      this.supportFragmentManager.findFragmentById(R.id.containerView)
-              (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
-                  super.onBackPressed()
-              }
-  */
-
-
     }
 
 
-    /* private fun exitApp(exit: Boolean) {
-         AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle(resources.getString(R.string.exit))
-                 .setMessage(resources.getString(R.string.areyousureyouwanttoexit))
-                 .setPositiveButton(resources.getString(R.string.yes), { _, _ -> if (exit) finish() else super.onBackPressed() }).setNegativeButton(resources.getString(R.string.no), null).show()
-     }*/
+    private fun exitApp(exit: Boolean) {
+        AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle(resources.getString(R.string.exit))
+            .setMessage(resources.getString(R.string.areyousureyouwanttoexit))
+            .setPositiveButton(resources.getString(R.string.yes))
+            { _, _ ->
+                if (exit) finish() else super.onBackPressed()
+            }
+            .setNegativeButton(resources.getString(R.string.no), null).show()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.navigation_drawer, menu)
@@ -138,7 +131,10 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_feedback -> supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.containerView, Feedback()).commit()
+            R.id.action_feedback -> supportFragmentManager.beginTransaction().addToBackStack(null).replace(
+                R.id.containerView,
+                Feedback()
+            ).commit()
 
         }
         return super.onOptionsItemSelected(item)
@@ -154,7 +150,8 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
                     supportFragmentManager.beginTransaction().replace(R.id.containerView, SelectServices()).commit()
             }
             R.id.mVisitSite -> {
-                supportFragmentManager.beginTransaction().replace(R.id.containerView, VisitWebsite()).addToBackStack(null).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.containerView, VisitWebsite())
+                    .addToBackStack(null).commit()
             }
             R.id.mAboutUs -> {
                 supportFragmentManager.beginTransaction().replace(R.id.containerView, AboutUs()).commit()
@@ -175,7 +172,7 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     private fun signInListener(): Boolean {
         supportFragmentManager.beginTransaction().replace(R.id.containerView, SignUpKleaners())
-                .addToBackStack(null).commit()
+            .addToBackStack(null).commit()
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
@@ -238,7 +235,8 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
     private fun versionDialog() {
         val layout = LayoutInflater.from(this).inflate(R.layout.dialog_version, null)
         layout.minimumWidth = width
-        val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val lp =
+            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         lp.setMargins(0, 20, 0, 0)
         layout.mVersion.text = "v.${BuildConfig.VERSION_NAME}"
         dialog.setContentView(layout)
@@ -251,15 +249,18 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
     private fun policyDialog() {
         val layout = LayoutInflater.from(this).inflate(R.layout.dialog_privacy, null)
         layout.minimumWidth = width
-        val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val lp =
+            LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         lp.setMargins(0, 20, 0, 0)
         dialog.setContentView(layout)
         dialog.mPrivacyPolicy.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(R.id.containerView, PrivacyPoilcy()).addToBackStack(null).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.containerView, PrivacyPoilcy()).addToBackStack(null)
+                .commit()
             dialog.dismiss()
         }
         dialog.mTermsOfUses.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(R.id.containerView, TermsOfUses()).addToBackStack(null).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.containerView, TermsOfUses()).addToBackStack(null)
+                .commit()
             dialog.dismiss()
         }
         dialog.setCanceledOnTouchOutside(true)

@@ -288,6 +288,7 @@
     <string name="my_services">My Services</string>
     <string name="my_invoice">My Invoice</string>
     <string name="my_queries">My Queries</string>
+    <string name="invite">Invite</string>
     <string name="recycling_service">Recycling Service</string>
     <string name="saved_address">Saved Address</string>
     <string name="add_new_service">Add new service</string>
