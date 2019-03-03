@@ -10,17 +10,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.thekleaners.R
-import com.thekleaners.baseClasses.BaseNavigationFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.thekleaners.BuildConfig
+import com.thekleaners.R
 import com.thekleaners.activity.NavigationDrawer
+import com.thekleaners.baseClasses.BaseNavigationFragment
 import kotlinx.android.synthetic.main.app_bar_navigation_drawer.*
 import kotlinx.android.synthetic.main.dialog_logout.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import com.thekleaners.BuildConfig
 
 
 class Profile : BaseNavigationFragment() {
@@ -70,6 +70,7 @@ class Profile : BaseNavigationFragment() {
         mProfileBackArrow.setOnClickListener { mProfileBackArrowFunction() }
         mRelativeLayoutQuery.setOnClickListener { mRelativeLayoutQueryFunction() }
         mRelativeLayoutMyInvoice.setOnClickListener { mRelativeLayoutMyInvoiceFunction() }
+        mUsername.setOnClickListener { mEditProfileFunction() }
         mInvite.setOnClickListener {
             try {
                 val shareIntent = Intent(Intent.ACTION_SEND)
@@ -148,15 +149,18 @@ class Profile : BaseNavigationFragment() {
     private fun mRelativeLayoutMyServiceFunction() {
 
         if (pref.homeAndFlat) {
-            fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, SavedServices()).commit()
+            fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, SavedServices())
+                .commit()
         } else {
-            fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, SavedServiceForFarms()).commit()
+            fragmentManager!!.beginTransaction().addToBackStack(null)
+                .replace(R.id.containerView, SavedServiceForFarms()).commit()
         }
 
     }
 
     private fun mEditProfileFunction() {
-        fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, UserEditProfile()).commit()
+        fragmentManager!!.beginTransaction().addToBackStack(null).replace(R.id.containerView, UserEditProfile())
+            .commit()
     }
 
     private fun mRelativeLayoutMyInvoiceFunction() {
