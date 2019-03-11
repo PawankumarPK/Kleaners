@@ -4,16 +4,14 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.DisplayMetrics
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -50,6 +48,13 @@ class NavigationDrawer : BaseActivity(), NavigationView.OnNavigationItemSelected
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
         setSupportActionBar(toolbar)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }
 
         metrics = DisplayMetrics()
         this.window.decorView.getWindowVisibleDisplayFrame(displayRectangle)
