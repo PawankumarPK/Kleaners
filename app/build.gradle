@@ -13,9 +13,9 @@ android {
         applicationId "com.thekleaners"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 6
+        versionCode 7
         multiDexEnabled true
-        versionName "2.0.1.4"
+        versionName "2.0.1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
